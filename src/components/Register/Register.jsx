@@ -1,25 +1,29 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import React from 'react';
+import React, { useState } from 'react';
 import { auth } from '../../firebase.init';
 
-const handelRegister = (e) => {
-    e.preventDefault();
-    const email= e.target.email.value;
-    const password = e.target.password.value;
-    console.log(email, password);
-    
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((result)=>{
-        console.log(result.user.email);
-        
-    })
-    .catch(error => {
-        console.log('ERROR', error);
-        
-    })
-}
 
 const Register = () => {
+
+    const [errorMassage, setErrorMassage] = useState('')
+
+    const handelRegister = (e) => {
+        e.preventDefault();
+        const email= e.target.email.value;
+        const password = e.target.password.value;
+        console.log(email, password);
+        setErrorMassage('')
+        
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((result)=>{
+            console.log(result.user.email);
+            
+        })
+        .catch(error => {
+            console.log('ERROR', error.message);
+            setErrorMassage(error.message)
+        })
+    }
     return (
         <div className='max-w-lg mx-auto'>
             <h2 className='text-4xl my-8 text-center'>Register Page</h2>
@@ -36,6 +40,9 @@ const Register = () => {
                 </label>
                 <button className="btn w-full btn-accent">Register</button>
             </form>
+            {
+                errorMassage && <p className='text-center text-lg text-red-600 my-2'>Email-already-in-use</p>
+            }
         </div>
     );
 };

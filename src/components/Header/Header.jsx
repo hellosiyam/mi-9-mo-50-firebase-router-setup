@@ -7,12 +7,12 @@ const Header = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/login'>Login</NavLink></li>
         <li><NavLink to='/register'>Register</NavLink></li>
-        <li><NavLink to='/register2'>Register2</NavLink></li>
+        <li><NavLink to='/signup'>Sign up</NavLink></li>
     </>
 
     return (
         <div>
-            <div className="navbar bg-base-100 shadow-sm">
+            <div className="navbar">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
