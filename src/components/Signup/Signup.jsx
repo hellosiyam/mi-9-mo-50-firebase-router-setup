@@ -16,7 +16,7 @@ const Signup = () => {
         setSuccessMassage(false)
 
         if (password.length < 6) {
-            setErrorMassage('Password Must be less then 6 character')
+            setErrorMassage('Password Should be more then 6 character')
             return
         }
 
